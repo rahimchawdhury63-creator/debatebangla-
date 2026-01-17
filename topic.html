@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>বিতর্ক বিষয় | বিতর্ক বাংলা</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="topics.html" class="back">← ফিরে যান</a>
+  <h1 id="title"></h1>
+</header>
+
+<section class="content">
+  <h3>পক্ষে যুক্তি</h3>
+  <ul id="pros"></ul>
+
+  <h3>বিপক্ষে যুক্তি</h3>
+  <ul id="cons"></ul>
+</section>
+
+<script src="data.js"></script>
+<script>
+const slug = new URLSearchParams(location.search).get("slug");
+const topic = topics.find(t => t.slug === slug);
+
+if (topic) {
+  document.title = topic.title + " | বিতর্ক বাংলা";
+  document.querySelector("meta[name=description]").content = topic.description;
+  document.getElementById("title").innerText = topic.title;
+
+  topic.pros.forEach(p => pros.innerHTML += `<li>${p}</li>`);
+  topic.cons.forEach(c => cons.innerHTML += `<li>${c}</li>`);
+}
+</script>
+
+</body>
+</html>
